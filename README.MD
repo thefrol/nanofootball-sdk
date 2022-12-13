@@ -1,14 +1,17 @@
 # Библиотека для работы с nanofootball.com
 
+Позволяет заскриптовать самые простые действия, и легко создавать удалять упражнения, искать повторы и другое. 
+
 ## Установка
 
-    pip install .
-    pip install nanofoot
+    pip install nanofootball-sdk
 
 ## Авторизация
 
 ### Через файл nanofootball-credentials.yaml(рекомендуется)
+
 Создайте файл nanofootball-credentials.yaml следующего содержания
+
     username: my_name@yandex.ru
     password: qwerty111
 
@@ -23,7 +26,7 @@
     from nanofoot import Api
     api=Api(username='my_name@yandex.ru', password='qwerty123.')
 
-В такком случае все сервисы нужно будет создавать вручную указывая апи
+В таком случае все сервисы нужно будет создавать вручную указывая апи
 
     from nanofoot import Api, VideoService
 
@@ -37,15 +40,19 @@
 ## Видео
 
     from nanofoot import VideoService
+
     videos=VideoService()
     print(videos[2554])
+
     # prints video with id 2554
 
 ## Упражнения
 
     from nanofoot import ExerciceService
+
     exercises=ExercisesService()
     print(exercises[122])
+
     # prints exercise with id 122
 
     for exercise in exercises['Z3']
