@@ -12,7 +12,9 @@ print(long_description)
 
 setup(
     name='nanofootball-sdk',
-    version='0.1.0',
+    version='0.1.1',
+    author='Dmitriy Frolenko',
+    author_email='orangefrol@gmail.com',
     packages=find_packages(where='src'),
     package_dir={"": "src"},
     install_requires=requirements, # лол без этой строчки он ругался на README.MD
