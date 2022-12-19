@@ -1,0 +1,17 @@
+README.md
+setup.py
+src/nanofoot/__init__.py
+src/nanofoot/api.py
+src/nanofoot/constants.py
+src/nanofoot/exercises.py
+src/nanofoot/fileserver.py
+src/nanofoot/folders.py
+src/nanofoot/video.py
+src/nanofoot/cli/__init__.py
+src/nanofoot/cli/video.py
+src/nanofootball_sdk.egg-info/PKG-INFO
+src/nanofootball_sdk.egg-info/SOURCES.txt
+src/nanofootball_sdk.egg-info/dependency_links.txt
+src/nanofootball_sdk.egg-info/entry_points.txt
+src/nanofootball_sdk.egg-info/requires.txt
+src/nanofootball_sdk.egg-info/top_level.txt

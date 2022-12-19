@@ -87,6 +87,7 @@ class ExerciseInfo:
     @property
     def has_videos(self):
         return True if self.video_ids else False
+
     
     def find_video_place(self,video_id):
         fields=['animation_1','animation_2','video_1','video_2']
@@ -122,6 +123,9 @@ class ExerciseListIter:
     def __next__(self) -> ExerciseInfo:
         next_id=next(self._iter)
         return self._creator_func(next_id)
+    def __len__(self):
+        
+        return len(self._iter) if len(self._iter)>=0 else None
 
 class ExercisesIdsIter:
     """A class iterating over each folder and returns all exercises ids"""

@@ -1,0 +1,10 @@
+Metadata-Version: 2.1
+Name: nanofootball
+Version: 0.1.0
+Requires: pyyaml
+
+Requires: bs4
+
+Requires: requests
+
+A SDK for working with nanofootball.com

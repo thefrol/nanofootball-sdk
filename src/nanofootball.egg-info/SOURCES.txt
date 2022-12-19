@@ -1,0 +1,15 @@
+setup.py
+src/nanofoot/__init__.py
+src/nanofoot/api.py
+src/nanofoot/constants.py
+src/nanofoot/exercises.py
+src/nanofoot/fileserver.py
+src/nanofoot/folders.py
+src/nanofoot/video.py
+src/nanofoot/cli/__init__.py
+src/nanofoot/cli/video.py
+src/nanofootball.egg-info/PKG-INFO
+src/nanofootball.egg-info/SOURCES.txt
+src/nanofootball.egg-info/dependency_links.txt
+src/nanofootball.egg-info/entry_points.txt
+src/nanofootball.egg-info/top_level.txt

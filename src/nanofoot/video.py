@@ -27,6 +27,9 @@ class Folder:
     @property
     def location(self):
         return self._data['short_name']
+    @property
+    def is_Z_folder(self):
+        return 'Z' in self.location
 
 def take_first(object):
     return next(iter(object))
@@ -100,7 +103,16 @@ class Video:
         return f'http://nanofootball.com/video/?id={self.id}'
     @property
     def has_exercises(self):
-        return True if self.exercises else False 
+        return True if self.exercises else False
+    @property
+    def note_video(self):
+        """for sercion Video/Animation"""
+        return self._data['note']['video']
+
+    @property
+    def note_animation(self):
+        """for sercion Video/Animation"""
+        return self._data['note']['animation']
 
     def is_in_folder_with(self,**kwargs):
         """
@@ -238,7 +250,9 @@ class VideoService:
             path:str,
             title:str,
             video_source:int=1,#default=NF
-            youtube_link='')-> Video:
+            youtube_link='',
+            note_video=False,
+            note_animation=False)-> Video:
 
         #checks
         file=pathlib.Path(path)
@@ -261,6 +275,11 @@ class VideoService:
                 'language': 'none',
                 'taggit': '[]',
             }
+            # adding notes for Video/Animation
+            if note_video:
+                payload['note_video']='on'
+            if note_animation:
+                payload['note_animation']='on'
 
             headers=self._headers
 
@@ -283,11 +302,13 @@ class VideoService:
                 logger.warn(f'some stuff with upload must be status code 201 but its {resp.status_code}')
             return Video(data=resp.json())
 
-    def patch(self,video_id,file_video:str=NotUpdatable(),file_screen=NotUpdatable(),**kwargs):
+    def patch(self,video_id,file_video:str=NotUpdatable(),file_screen=NotUpdatable(), is_video=NotUpdatable(), is_animation=NotUpdatable,**kwargs):
+        #how to work with note video? upload as patch(...,note={'video'=True}) ??? Should test
         if 'id' in kwargs:
             raise Exception('Update method doest receive id. We cant change video id')
 
         files={}
+        payload=kwargs| {'id':video_id}
         if is_updatable(file_video):
             file=pathlib.Path(file_video)
             if not file.exists() and file.is_file():
@@ -297,9 +318,13 @@ class VideoService:
             files['file_video']=(filename,video_handler,'video/mp4')
         if is_updatable(file_screen):
             raise NotImplemented('cant update screensavet atm')
+        if is_updatable(is_video):
+            payload['video_note']='on'
+        if is_updatable(is_animation):
+            payload['animation_note']='on'
         
         url=self._api.urls.video_by_id(video_id)
-        payload=kwargs| {'id':video_id}
+        
         resp=self._api.session.patch(url=url,headers=self._headers,data=payload,files=files if files else None)
 
         for key in files:
